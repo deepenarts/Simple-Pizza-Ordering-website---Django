@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block start %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        {%for pizza in pizzas%}
+            <div class="col-md-3">
+                <div class="card shadow-lg" style ="width:18rem;">
+                    <img src = "/media/{{pizza.images}}" style="height:220px;" class="card-top">
+                    <div class = "card-body">
+                        <h5 class="card-title">{{pizza.pizza_name}} </h5>
+                        <p>Price- {{pizza.price}} | Category- {{pizza.category.category_name}} </p>
+
+                        <a href="{% url 'add_cart' pizza.uid %}" class="btn btn-primary">Cart <i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href= "#" class="btn btn-primary">20% discount </a>
+                    </div>
+                </div>
+            </div>
+
+        {%endfor%}
+    </div>
+</div>
+{% load static %}
+<script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings = 
+            {"appId":"5e383c7dcb1cecf4acbf3353eef08ea4","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+</script>
+{% endblock start %}
